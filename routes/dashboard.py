@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template_string, session
-from data.store import clients, projects, prds, tasks, bugs, uat_cases, releases, validation_issues, funnel
+from data.store import (get_clients, get_projects, get_prds, get_tasks, get_bugs,
+                        get_uat_cases, get_releases, get_validation_issues, get_funnel)
 from services.dashboard import dashboard_stats
 from routes.layout import page
 
@@ -8,6 +9,16 @@ dashboard_bp = Blueprint("dashboard", __name__)
 
 @dashboard_bp.route("/")
 def dashboard():
+    clients = get_clients()
+    projects = get_projects()
+    prds = get_prds()
+    tasks = get_tasks()
+    bugs = get_bugs()
+    uat_cases = get_uat_cases()
+    releases = get_releases()
+    validation_issues = get_validation_issues()
+    funnel = get_funnel()
+
     stats = dashboard_stats(clients, projects, prds, tasks, bugs, uat_cases, releases, validation_issues, funnel)
     role = session.get("role", "Product Manager")
     content = render_template_string(

@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template_string
-from data.store import funnel
+from data.store import get_funnel
 from services.dashboard import funnel_analysis
 from routes.layout import page
 from utils.helpers import badge_class
@@ -9,6 +9,7 @@ funnel_bp = Blueprint("funnel", __name__, url_prefix="/funnel")
 
 @funnel_bp.route("")
 def funnel_page():
+    funnel = get_funnel()
     result = funnel_analysis(funnel)
     content = render_template_string(
         """<h1>Funnel Analysis</h1><p class="subtitle">Track conversion and drop-off across product activation stages.</p>

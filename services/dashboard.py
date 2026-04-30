@@ -17,7 +17,7 @@ def dashboard_stats(clients, projects, prds, tasks, bugs, uat_cases, releases, v
             ("Open Bugs", sum(1 for b in bugs if b['status'] != 'Closed')),
             ("UAT Pending", uat_pending),
             ("Data Validation Issues", len(validation_issues)),
-            ("Upcoming Releases", sum(1 for r in releases if r['deployment'] != 'Deployed')),
+            ("Upcoming Releases", sum(1 for r in releases if r.get('deployment_status', r.get('deployment')) != 'Deployed')),
             ("Product Health Score", "72%"),
         ],
         "project_counts": dict(project_counts),
