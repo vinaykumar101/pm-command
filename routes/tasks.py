@@ -1,5 +1,5 @@
 from flask import Blueprint, request, redirect, url_for, render_template_string
-from data.store import get_tasks, get_projects, add_task
+from data.store import get_tasks, get_projects, get_prds, add_task
 from routes.layout import page
 from utils.helpers import badge_class
 
@@ -16,13 +16,13 @@ def tasks_page():
         project_name = request.form.get("project", "").strip()
         prd_title = request.form.get("prd", "").strip()
         projects = get_projects()
-        prds = get_prds()
+        prds_data = get_prds()
         for p in projects:
             if p["name"] == project_name:
                 form_data["project_id"] = p["id"]
                 form_data["client_id"] = p.get("client_id")
                 break
-        for p in prds:
+        for p in prds_data:
             if p["title"] == prd_title:
                 form_data["prd_id"] = p["id"]
                 break
@@ -41,8 +41,3 @@ def tasks_page():
         tasks=tasks, cols=TASK_COLUMNS, badge_class=badge_class,
     )
     return page(content)
-
-
-def get_prds():
-    from data.store import get_prds as _get_prds
-    return _get_prds()

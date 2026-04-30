@@ -11,6 +11,11 @@ PRD_KEYS = [
 ]
 
 
+def get_prds_data():
+    from data.store import get_prds
+    return get_prds()
+
+
 @prds_bp.route("", methods=["GET", "POST"])
 def prds_page():
     if request.method == "POST":
