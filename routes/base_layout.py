@@ -6,6 +6,7 @@ BASE = """<!DOCTYPE html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PM Command Center</title>
+<script src="https://unpkg.com/htmx.org@1.9.10"></script>
 <style>
     :root{--bg:#f5f7fb;--card:#fff;--text:#111827;--muted:#6b7280;--line:#e5e7eb;--primary:#2563eb;--shadow:0 12px 30px rgba(15,23,42,.08);--danger:#fee2e2;--danger-text:#991b1b;--warning:#fef3c7;--warning-text:#92400e;--success:#dcfce7;--success-text:#166534;--neutral:#e5e7eb;--neutral-text:#374151;}
     *{box-sizing:border-box}
